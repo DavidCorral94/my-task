@@ -4,13 +4,13 @@ import org.scalatest._
 
 class MapsSpec extends FlatSpec with Matchers {
 
-  "Map size" should "be 4" in {
+  "Map" should "have size 4" in {
     val myMap =
       Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa")
     myMap.size should be(4)
   }
 
-  it should "be 3" in {
+  it should "have size 3" in {
     val myMap = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "MI" → "Michigan")
     myMap.size should be(3)
   }
