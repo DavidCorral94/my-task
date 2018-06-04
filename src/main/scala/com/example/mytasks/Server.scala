@@ -10,6 +10,8 @@ object Server extends HttpServer[IO]
 
 class HttpServer[F[_] : Effect] extends StreamApp[F] {
 
+  import com.example.mytasks.implicits.runtime._
+
   def service[F[_] : Effect] = new Routes[F].service
 
   override def stream(args: List[String], requestShutdown: F[Unit]): fs2.Stream[F, StreamApp.ExitCode] = {
