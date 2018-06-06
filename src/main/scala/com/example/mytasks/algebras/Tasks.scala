@@ -3,7 +3,9 @@ package com.example.mytasks.algebras
 import com.example.mytasks.models.Task
 
 abstract class Tasks[F[_]] {
-  def add(a: Task): F[Int]
+  def add(userId: Int, title: String): F[Int]
 
-  def list: F[List[Task]]
+  def list(userId: Int): F[List[Task]]
+
+  def asDone(id: Int): F[Boolean]
 }
