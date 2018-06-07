@@ -19,3 +19,5 @@ lazy val root = (project in file(".")).
     ),
     libraryDependencies ++= dependencies
   )
+enablePlugins(JavaAppPackaging)
+
