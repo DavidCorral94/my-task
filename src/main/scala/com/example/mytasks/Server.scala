@@ -20,7 +20,7 @@ class HttpServer[F[_]: Effect](implicit C: F[AppConfig]) extends StreamApp[F] {
       config <- fs2.Stream.eval(C)
       _ <- fs2.Stream.eval(Database.migrateDB(config))
       httpServer <- BlazeBuilder[F]
-        .bindHttp(config.http.port, config.http.host)
+        .bindHttp(9999, "localhost")
         .mountService(service, "/")
         .serve
     } yield httpServer
