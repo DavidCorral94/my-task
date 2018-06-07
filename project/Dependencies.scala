@@ -4,7 +4,10 @@ object Dependencies {
 
   val Http4sVersion = "0.18.12"
   val CirceVersion = "0.9.3"
+  val DoobieVersion = "0.5.3"
+  val FlywayVersion = "5.0.5"
 
+  lazy val pureconfig = "com.github.pureconfig" %% "pureconfig" % "0.9.1"
   lazy val logback = "ch.qos.logback"  %  "logback-classic" % "1.2.3"
   lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5"
 
@@ -19,10 +22,17 @@ object Dependencies {
     "io.circe" %% "circe-parser" % CirceVersion,
     "io.circe" %% "circe-literal" % CirceVersion)
 
+  lazy val database = Seq(
+    "org.tpolecat" %% "doobie-core" % DoobieVersion,
+    "org.tpolecat" %% "doobie-h2" % DoobieVersion,
+    "org.tpolecat" %% "doobie-scalatest" % DoobieVersion,
+    "org.flywaydb" %  "flyway-core" % FlywayVersion
+  )
 
   lazy val dependencies: Seq[ModuleID] = Seq(
     logback,
+    pureconfig,
     scalaTest % Test
-  ) ++ http4s ++ circe
+  ) ++ http4s ++ circe ++ database
 
 }
