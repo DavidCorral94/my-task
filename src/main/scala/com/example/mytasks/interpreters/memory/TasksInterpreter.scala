@@ -1,11 +1,11 @@
-package com.example.mytasks.interpreters
+package com.example.mytasks.interpreters.memory
 
 import cats.Applicative
 import cats.implicits._
 import com.example.mytasks.algebras.Tasks
 import com.example.mytasks.models.Task
 
-class TasksInterpreter[F[_] : Applicative] extends Tasks[F] {
+class TasksInterpreter[F[_]: Applicative] extends Tasks[F]{
 
   var db: List[Task] = Nil
 
@@ -17,7 +17,7 @@ class TasksInterpreter[F[_] : Applicative] extends Tasks[F] {
 
   override def list(userId: Int): F[List[Task]] = db.filter(_.userId == userId).pure[F]
 
-  override def asDone(id: Int): F[Boolean] = find(id).fold(false) { t =>
+  override def asDone(id: Int): F[Boolean] = find(id).fold(false){ t =>
     db = db.filterNot(_ == t) ++ List(asTrue(t))
     true
   }.pure[F]
